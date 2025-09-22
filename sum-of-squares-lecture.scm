@@ -1,16 +1,24 @@
-;; The first three lines of this file were inserted by DrRacket. They record metadata
-;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-beginner-reader.ss" "lang")((modname sum-of-squares-lecture) (read-case-sensitive #t) (teachpacks ((lib "convert.rkt" "teachpack" "htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "convert.rkt" "teachpack" "htdp")) #f)))
-(define (sum-of-squares a b)
-  (if (< b a) 0
-      (+ (square a) (sum-of-squares (+ a 1) b ))
-))
-
-(define (square x)
+ #lang racket/base
+(define (my-square x)
   (* x x))
 
+(define (cube x)
+  (* x x x)
+ )
 
-(sum-of-squares 3 5)
-(sum-of-squares 3 4)
-(sum-of-squares 3 3)
-(sum-of-squares 3 2)
+(define (sum FN a b)
+  (if (< b a)
+      0
+      (+ (FN a) (sum FN (+ a 1) b))
+   )
+ )
+
+(sum my-square 3 5)
+(sum my-square 3 4)
+(sum my-square 3 3)
+(sum my-square 3 2)
+(sum cube 3 5)
+(sum cube 3 4)
+(sum cube 3 3)
+(sum cube 3 2)
+
